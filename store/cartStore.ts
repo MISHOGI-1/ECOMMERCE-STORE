@@ -1,0 +1,79 @@
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+interface CartItem {
+  id: string;
+  productId: string;
+  shopifyVariantId?: string; // Shopify variant GID for checkout
+  shopifyId?: string; // Shopify product GID
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+}
+
+interface CartStore {
+  items: CartItem[];
+  addItem: (item: Omit<CartItem, 'id' | 'quantity'> & { quantity?: number }) => void;
+  removeItem: (productId: string) => void;
+  updateQuantity: (productId: string, quantity: number) => void;
+  clearCart: () => void;
+  getTotal: () => number;
+  getItemCount: () => number;
+}
+
+export const useCartStore = create<CartStore>()(
+  persist(
+    (set, get) => ({
+      items: [],
+      addItem: (item) => {
+        const existingItem = get().items.find((i) => i.productId === item.productId);
+        if (existingItem) {
+          set({
+            items: get().items.map((i) =>
+              i.productId === item.productId
+                ? { ...i, quantity: i.quantity + (item.quantity || 1) }
+                : i
+            ),
+          });
+        } else {
+          set({
+            items: [
+              ...get().items,
+              {
+                ...item,
+                id: Math.random().toString(36).substr(2, 9),
+                quantity: item.quantity || 1,
+              },
+            ],
+          });
+        }
+      },
+      removeItem: (productId) => {
+        set({ items: get().items.filter((i) => i.productId !== productId) });
+      },
+      updateQuantity: (productId, quantity) => {
+        if (quantity <= 0) {
+          get().removeItem(productId);
+        } else {
+          set({
+            items: get().items.map((i) =>
+              i.productId === productId ? { ...i, quantity } : i
+            ),
+          });
+        }
+      },
+      clearCart: () => set({ items: [] }),
+      getTotal: () => {
+        return get().items.reduce((total, item) => total + item.price * item.quantity, 0);
+      },
+      getItemCount: () => {
+        return get().items.reduce((count, item) => count + item.quantity, 0);
+      },
+    }),
+    {
+      name: 'global-city-cart',
+    }
+  )
+);
+
