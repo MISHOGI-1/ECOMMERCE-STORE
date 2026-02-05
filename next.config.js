@@ -20,6 +20,15 @@ const nextConfig = {
   poweredByHeader: false,
   // SEO optimizations
   reactStrictMode: true,
+  // Avoid Watchpack errors on Windows (System Volume Information, etc.)
+  webpack: (config, { dev }) => {
+    if (dev) {
+      config.watchOptions = {
+        ignored: ['**/node_modules', '**/.git', 'C:\\System Volume Information', 'C:\\hiberfil.sys', 'C:\\swapfile.sys'],
+      };
+    }
+    return config;
+  },
 };
 
 module.exports = nextConfig;
