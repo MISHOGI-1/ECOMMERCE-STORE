@@ -101,9 +101,7 @@ export default function CheckoutPage() {
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Checkout</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Checkout Form */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Shipping Address */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-6">Shipping Address</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -227,7 +225,6 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            {/* Payment Method */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
                 <FiCreditCard className="mr-2" />
@@ -235,14 +232,13 @@ export default function CheckoutPage() {
               </h2>
               <div className="bg-primary-50 border-2 border-primary-200 rounded-lg p-4">
                 <p className="text-sm text-gray-600">
-                  We use Stripe for secure payment processing. You'll be redirected to
+                  We use Stripe for secure payment processing. You&apos;ll be redirected to
                   complete your payment.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-24">
               <h2 className="text-xl font-bold text-gray-900 mb-6">Order Summary</h2>
@@ -285,7 +281,6 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Discount Code */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Discount Code

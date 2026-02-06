@@ -29,7 +29,6 @@ export default function AdminDashboard() {
       return;
     }
 
-    // Fetch stats
     fetch("/api/admin/stats")
       .then((res) => res.json())
       .then((data) => setStats(data))
@@ -55,7 +54,6 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Admin Dashboard</h1>
 
-        {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -119,7 +117,6 @@ export default function AdminDashboard() {
           </motion.div>
         </div>
 
-        {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Link
             href="/admin/products"

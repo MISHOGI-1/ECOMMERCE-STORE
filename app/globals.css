@@ -41,7 +41,6 @@ a {
   }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }

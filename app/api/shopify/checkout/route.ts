@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 import { getShopifyClient, CREATE_CHECKOUT_QUERY } from "@/lib/shopify";
 
 export async function POST(request: NextRequest) {
   try {
-    // Check if Shopify is configured
     if (!process.env.SHOPIFY_STORE_DOMAIN || !process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN) {
       return NextResponse.json(
         { error: "Shopify not configured" },
@@ -26,9 +25,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
     }
 
-    // Convert cart items to Shopify line items
     const lineItems = items
-      .filter((item: any) => item.shopifyVariantId) // Only include items with Shopify variant IDs
+      .filter((item: any) => item.shopifyVariantId)
       .map((item: any) => ({
         variantId: item.shopifyVariantId,
         quantity: item.quantity,
@@ -41,7 +39,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create Shopify checkout
     const variables = {
       input: {
         lineItems: lineItems,
@@ -66,9 +63,6 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-
-    // Save order to database (optional - for tracking)
-    // You can save the checkout ID to track orders
 
     return NextResponse.json({
       url: checkout.webUrl,

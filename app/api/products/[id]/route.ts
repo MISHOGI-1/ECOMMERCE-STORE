@@ -4,21 +4,17 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  // Check if Shopify is configured
   const useShopify = process.env.SHOPIFY_STORE_DOMAIN && process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
   
   if (useShopify) {
-    // Directly import and call Shopify API handler
     try {
       const shopifyModule = await import("@/app/api/shopify/products/[handle]/route");
       return shopifyModule.GET(request, { params: { handle: params.id } });
     } catch (error) {
       console.error("Shopify product fetch error:", error);
-      // Fall through to local database
     }
   }
   
-  // Fallback to local database
   const { prisma } = await import("@/lib/prisma");
   
   try {

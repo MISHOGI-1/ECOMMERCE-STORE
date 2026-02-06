@@ -35,11 +35,8 @@ export function Navbar() {
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Bar */}
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            {/* Logo Image - Circular */}
             <div className="relative h-12 w-12 flex items-center justify-center">
               <div className="h-12 w-12 rounded-full overflow-hidden bg-white border-2 border-primary-600 flex items-center justify-center">
                 <img
@@ -47,15 +44,12 @@ export function Navbar() {
                   alt="GLOBAL CITY Logo"
                   className="h-full w-full object-cover rounded-full"
                   onError={(e) => {
-                    // Hide image if it fails to load
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
-                    // Show fallback
                     const fallback = target.parentElement?.querySelector('.logo-fallback') as HTMLElement;
                     if (fallback) fallback.style.display = 'flex';
                   }}
                 />
-                {/* Fallback placeholder */}
                 <div className="logo-fallback hidden w-full h-full bg-primary-600 rounded-full items-center justify-center absolute inset-0">
                   <span className="text-white font-bold text-xl">GC</span>
                 </div>
@@ -64,7 +58,6 @@ export function Navbar() {
             <span className="text-2xl font-bold text-primary-600">GLOBAL CITY</span>
           </Link>
 
-          {/* Search Bar - Desktop */}
           <div className="hidden md:flex flex-1 max-w-lg mx-8">
             <div className="relative w-full">
               <input
@@ -78,14 +71,11 @@ export function Navbar() {
             </div>
           </div>
 
-          {/* Right Icons */}
           <div className="flex items-center space-x-4">
-            {/* Search Icon - Mobile */}
             <button className="md:hidden p-2">
               <FiSearch className="w-6 h-6 text-gray-600" />
             </button>
 
-            {/* User Account */}
             {session ? (
               <div className="relative group">
                 <Link href="/account" className="p-2 relative">
@@ -117,7 +107,6 @@ export function Navbar() {
               </Link>
             )}
 
-            {/* Wishlist */}
             <Link href="/wishlist" className="p-2 relative">
               <FiHeart className="w-6 h-6 text-gray-600" />
               {wishlistCount > 0 && (
@@ -131,7 +120,6 @@ export function Navbar() {
               )}
             </Link>
 
-            {/* Cart */}
             <Link href="/cart" className="p-2 relative">
               <FiShoppingCart className="w-6 h-6 text-gray-600" />
               {itemCount > 0 && (
@@ -145,7 +133,6 @@ export function Navbar() {
               )}
             </Link>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2"
@@ -159,7 +146,6 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Category Navigation - Desktop */}
         <div className="hidden md:flex items-center space-x-6 py-3 border-t border-gray-200">
           {categories.map((category) => (
             <Link
@@ -173,7 +159,6 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div

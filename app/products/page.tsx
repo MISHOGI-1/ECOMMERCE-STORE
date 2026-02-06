@@ -66,7 +66,6 @@ export default function ProductsPage() {
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Filters Sidebar */}
           <aside className="w-full md:w-64">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-24">
               <div className="flex items-center justify-between mb-4">
@@ -81,7 +80,6 @@ export default function ProductsPage() {
 
               <div className="md:block hidden">
                 <div className="space-y-6">
-                    {/* Category Filter */}
                     <div>
                       <h3 className="font-semibold text-gray-700 mb-3">Category</h3>
                       <div className="space-y-2">
@@ -118,7 +116,6 @@ export default function ProductsPage() {
                       </div>
                     </div>
 
-                    {/* Price Filter */}
                     <div>
                       <h3 className="font-semibold text-gray-700 mb-3">Price Range</h3>
                       <div className="space-y-2">
@@ -143,7 +140,6 @@ export default function ProductsPage() {
                       </div>
                     </div>
 
-                    {/* Sort By */}
                     <div>
                       <h3 className="font-semibold text-gray-700 mb-3">Sort By</h3>
                       <select
@@ -169,7 +165,6 @@ export default function ProductsPage() {
                     exit={{ opacity: 0, height: 0 }}
                     className="md:hidden space-y-6"
                   >
-                    {/* Category Filter */}
                     <div>
                       <h3 className="font-semibold text-gray-700 mb-3">Category</h3>
                       <div className="space-y-2">
@@ -206,7 +201,6 @@ export default function ProductsPage() {
                       </div>
                     </div>
 
-                    {/* Price Filter */}
                     <div>
                       <h3 className="font-semibold text-gray-700 mb-3">Price Range</h3>
                       <div className="space-y-2">
@@ -231,7 +225,6 @@ export default function ProductsPage() {
                       </div>
                     </div>
 
-                    {/* Sort By */}
                     <div>
                       <h3 className="font-semibold text-gray-700 mb-3">Sort By</h3>
                       <select
@@ -253,7 +246,6 @@ export default function ProductsPage() {
             </div>
           </aside>
 
-          {/* Products Grid */}
           <div className="flex-1">
             <div className="mb-6">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">

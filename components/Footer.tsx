@@ -6,15 +6,13 @@ export function Footer() {
     <footer className="bg-primary-900 text-white mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* About */}
           <div>
             <h3 className="text-xl font-bold mb-4">GLOBAL CITY</h3>
             <p className="text-primary-200 text-sm">
-              Your premier destination for men's fashion. Quality clothing and accessories for the modern man.
+              Your premier destination for men&apos;s fashion. Quality clothing and accessories for the modern man.
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm text-primary-200">
@@ -41,7 +39,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Customer Service */}
           <div>
             <h4 className="font-semibold mb-4">Customer Service</h4>
             <ul className="space-y-2 text-sm text-primary-200">
@@ -68,7 +65,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Social Media */}
           <div>
             <h4 className="font-semibold mb-4">Follow Us</h4>
             <div className="flex space-x-4">

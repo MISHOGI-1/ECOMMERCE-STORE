@@ -1,6 +1,5 @@
 import { GraphQLClient } from 'graphql-request';
 
-// Lazy initialization of Shopify client
 let shopifyClientInstance: GraphQLClient | null = null;
 
 export function getShopifyClient(): GraphQLClient {
@@ -15,19 +14,14 @@ export function getShopifyClient(): GraphQLClient {
     throw new Error('Shopify credentials not configured');
   }
 
-  // Handle both .myshopify.com and custom domains
   let domain = SHOPIFY_STORE_DOMAIN;
-  // Remove https:// if present
   domain = domain.replace(/^https?:\/\//, '');
-  // Remove trailing slash
   domain = domain.replace(/\/$/, '');
   
-  // If it's just a store name without domain, add .myshopify.com
   if (!domain.includes('.') && !domain.includes('myshopify')) {
     domain = `${domain}.myshopify.com`;
   }
   
-  // Use latest API version
   const endpoint = `https://${domain}/api/2024-10/graphql.json`;
 
   shopifyClientInstance = new GraphQLClient(endpoint, {
@@ -40,14 +34,12 @@ export function getShopifyClient(): GraphQLClient {
   return shopifyClientInstance;
 }
 
-// Export for backward compatibility
 export const shopifyClient = {
   request: (...args: Parameters<GraphQLClient['request']>) => {
     return getShopifyClient().request(...args);
   },
 };
 
-// GraphQL Queries
 export const GET_PRODUCTS_QUERY = `
   query getProducts($first: Int!, $after: String, $query: String) {
     products(first: $first, after: $after, query: $query) {
@@ -196,7 +188,6 @@ export const CREATE_CHECKOUT_QUERY = `
   }
 `;
 
-// Helper function to convert Shopify product to our format
 export function transformShopifyProduct(shopifyProduct: any) {
   const images = shopifyProduct.images?.edges?.map((edge: any) => edge.node.url) || [];
   const firstVariant = shopifyProduct.variants?.edges?.[0]?.node;
@@ -207,13 +198,12 @@ export function transformShopifyProduct(shopifyProduct: any) {
     ? parseFloat(shopifyProduct.compareAtPriceRange.minVariantPrice.amount)
     : null;
 
-  // Calculate inventory from variants
   const inventory = shopifyProduct.variants?.edges?.reduce((sum: number, edge: any) => {
     return sum + (edge.node.quantityAvailable || 0);
   }, 0) || 0;
 
   return {
-    id: shopifyProduct.id.split('/').pop(), // Extract ID from GID
+    id: shopifyProduct.id.split('/').pop(),
     shopifyId: shopifyProduct.id,
     handle: shopifyProduct.handle,
     name: shopifyProduct.title,

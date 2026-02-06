@@ -1,4 +1,3 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     domains: ['localhost', 'images.unsplash.com'],
@@ -13,14 +12,10 @@ const nextConfig = {
       },
     ],
   },
-  // Enable static exports for better SEO
   output: 'standalone',
-  // Optimize for production
   compress: true,
   poweredByHeader: false,
-  // SEO optimizations
   reactStrictMode: true,
-  // Avoid Watchpack errors on Windows (System Volume Information, etc.)
   webpack: (config, { dev }) => {
     if (dev) {
       config.watchOptions = {

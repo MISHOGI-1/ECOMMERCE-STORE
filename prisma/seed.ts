@@ -4,7 +4,6 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Create admin user
   const hashedPassword = await bcrypt.hash('admin123', 10);
   const admin = await prisma.user.upsert({
     where: { email: 'admin@globalcity.com' },
@@ -17,7 +16,6 @@ async function main() {
     },
   });
 
-  // Create test customer
   const customerPassword = await bcrypt.hash('customer123', 10);
   const customer = await prisma.user.upsert({
     where: { email: 'customer@globalcity.com' },
@@ -30,7 +28,6 @@ async function main() {
     },
   });
 
-  // Create sample products
   const categories = [
     'Bags',
     'Hoodies',
@@ -118,7 +115,6 @@ async function main() {
     });
   }
 
-  // Create discount code
   await prisma.discountCode.upsert({
     where: { code: 'WELCOME10' },
     update: {},

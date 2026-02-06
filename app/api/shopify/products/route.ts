@@ -3,7 +3,6 @@ import { getShopifyClient, GET_PRODUCTS_QUERY, transformShopifyProduct } from "@
 
 export async function GET(request: NextRequest) {
   try {
-    // Check if Shopify is configured
     if (!process.env.SHOPIFY_STORE_DOMAIN || !process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN) {
       return NextResponse.json(
         { error: "Shopify not configured", products: [] },
@@ -21,7 +20,6 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get("limit") || "100");
     const search = searchParams.get("search");
 
-    // Build Shopify query string
     let query = "";
     if (category) {
       query += `product_type:${category} OR tag:${category} `;
@@ -34,7 +32,7 @@ export async function GET(request: NextRequest) {
     }
 
     const variables: any = {
-      first: Math.min(limit, 250), // Shopify limit
+      first: Math.min(limit, 250),
     };
 
     if (query) {
@@ -47,7 +45,6 @@ export async function GET(request: NextRequest) {
       transformShopifyProduct(edge.node)
     );
 
-    // Apply price filters (if needed, as Shopify query might not support all filters)
     if (minPrice || maxPrice) {
       products = products.filter((product: any) => {
         if (minPrice && product.price < parseFloat(minPrice)) return false;
@@ -56,7 +53,6 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Apply sorting
     switch (sortBy) {
       case "price-low":
         products.sort((a: any, b: any) => a.price - b.price);
@@ -68,7 +64,6 @@ export async function GET(request: NextRequest) {
         products.sort((a: any, b: any) => a.name.localeCompare(b.name));
         break;
       default:
-        // Keep Shopify's default order
         break;
     }
 

@@ -1,22 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Redirect to Shopify products API if Shopify is enabled
 export async function GET(request: NextRequest) {
-  // Check if Shopify is configured
   const useShopify = process.env.SHOPIFY_STORE_DOMAIN && process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
   
   if (useShopify) {
-    // Directly import and call Shopify API handler
     try {
       const shopifyModule = await import("@/app/api/shopify/products/route");
       return shopifyModule.GET(request);
     } catch (error) {
       console.error("Error calling Shopify API:", error);
-      // Fall through to local database
     }
   }
   
-  // Fallback to local database (original implementation)
   const { prisma } = await import("@/lib/prisma");
   
   try {

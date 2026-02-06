@@ -4,8 +4,8 @@ import { persist } from 'zustand/middleware';
 interface CartItem {
   id: string;
   productId: string;
-  shopifyVariantId?: string; // Shopify variant GID for checkout
-  shopifyId?: string; // Shopify product GID
+  shopifyVariantId?: string;
+  shopifyId?: string;
   name: string;
   price: number;
   image: string;

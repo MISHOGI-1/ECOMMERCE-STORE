@@ -42,7 +42,6 @@ export function HomePage() {
 
   return (
     <Layout>
-      {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -55,7 +54,7 @@ export function HomePage() {
               Welcome to GLOBAL CITY
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-primary-100">
-              Premium Men's Fashion & Accessories
+              Premium Men&apos;s Fashion & Accessories
             </p>
             <Link
               href="/products"
@@ -67,7 +66,6 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Categories Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
@@ -102,7 +100,6 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Featured Products */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
@@ -137,7 +134,6 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Promotional Banner */}
       <section className="py-16 bg-primary-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div

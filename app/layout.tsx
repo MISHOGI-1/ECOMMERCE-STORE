@@ -68,10 +68,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    // Add Google Search Console verification code here when you get it
-    // google: "your-verification-code",
-  },
+  verification: {},
 };
 
 export default function RootLayout({

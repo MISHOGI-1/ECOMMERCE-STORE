@@ -13,7 +13,7 @@ export function formatPrice(price: number): string {
 }
 
 export function calculateShipping(subtotal: number): number {
-  if (subtotal >= 50) return 0; // Free shipping over £50
-  return 4.99; // Standard shipping
+  if (subtotal >= 50) return 0;
+  return 4.99;
 }
 

@@ -10,7 +10,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
-    // Fetch background settings from API
     fetch("/api/settings/background")
       .then((res) => res.json())
       .then((data) => {
@@ -29,7 +28,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         }
       })
       .catch(() => {
-        // Default to white if API fails
         setBackgroundStyle({ backgroundColor: "#ffffff" });
       });
   }, []);

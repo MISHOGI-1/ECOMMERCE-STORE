@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,11 +15,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
     }
 
-    // Check if Shopify is configured
     const useShopify = process.env.SHOPIFY_STORE_DOMAIN && process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
     
     if (useShopify) {
-      // Use Shopify checkout
       const shopifyResponse = await fetch(new URL('/api/shopify/checkout', request.url).toString(), {
         method: 'POST',
         headers: {
@@ -31,7 +29,6 @@ export async function POST(request: NextRequest) {
       const shopifyData = await shopifyResponse.json();
       
       if (shopifyData.url) {
-        // Save order reference to database (optional)
         const { prisma } = await import("@/lib/prisma");
         const user = await prisma.user.findUnique({
           where: { email: session.user.email },
@@ -67,10 +64,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(shopifyData, { status: shopifyResponse.status });
     }
     
-    // Fallback to Stripe checkout (original implementation)
     const Stripe = (await import("stripe")).default;
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-      apiVersion: "2024-12-18.acacia",
+      apiVersion: "2025-02-24.acacia",
     });
     
     const { prisma } = await import("@/lib/prisma");

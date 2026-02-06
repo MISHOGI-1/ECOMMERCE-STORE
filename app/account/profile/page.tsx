@@ -192,7 +192,7 @@ export default function ProfilePage() {
               <button
                 onClick={() => {
                   setIsEditing(false);
-                  fetchProfile(); // Reset to original data
+                  fetchProfile();
                 }}
                 className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
               >
@@ -211,7 +211,6 @@ export default function ProfilePage() {
         </div>
 
         <div className="space-y-6">
-          {/* Personal Information */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -301,7 +300,6 @@ export default function ProfilePage() {
             </div>
           </motion.div>
 
-          {/* Customer Preferences */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -332,7 +330,6 @@ export default function ProfilePage() {
             </div>
           </motion.div>
 
-          {/* Favorite Styles */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -343,7 +340,7 @@ export default function ProfilePage() {
               Favorite Styles
             </h2>
             <p className="text-sm text-gray-600 mb-4">
-              Choose your favorite fashion styles to help us recommend products you'll love
+              Choose your favorite fashion styles to help us recommend products you&apos;ll love
             </p>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
               {styleOptions.map((style) => (
@@ -363,7 +360,6 @@ export default function ProfilePage() {
             </div>
           </motion.div>
 
-          {/* Address Information */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

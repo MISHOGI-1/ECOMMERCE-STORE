@@ -46,7 +46,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Add category pages
   const categoryRoutes = categories.map((category) => ({
     url: `${baseUrl}/products?category=${category}`,
     lastModified: new Date(),

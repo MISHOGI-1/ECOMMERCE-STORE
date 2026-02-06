@@ -137,7 +137,6 @@ export function ProductDetailClient({ productId }: { productId: string }) {
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Product Images */}
           <div>
             <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4">
               {product.images[selectedImage] ? (
@@ -180,14 +179,12 @@ export function ProductDetailClient({ productId }: { productId: string }) {
             )}
           </div>
 
-          {/* Product Info */}
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
             {product.brand && (
               <p className="text-primary-600 font-medium mb-4">{product.brand}</p>
             )}
 
-            {/* Rating */}
             <div className="flex items-center space-x-2 mb-4">
               <div className="flex items-center">
                 {[...Array(5)].map((_, i) => (
@@ -206,7 +203,6 @@ export function ProductDetailClient({ productId }: { productId: string }) {
               </span>
             </div>
 
-            {/* Price */}
             <div className="mb-6">
               <div className="flex items-center space-x-3 mb-2">
                 <span className="text-3xl font-bold text-primary-600">
@@ -221,13 +217,11 @@ export function ProductDetailClient({ productId }: { productId: string }) {
               <p className="text-sm text-gray-600">SKU: {product.sku}</p>
             </div>
 
-            {/* Description */}
             <div className="mb-6">
               <h3 className="font-semibold text-gray-900 mb-2">Description</h3>
               <p className="text-gray-600">{product.description}</p>
             </div>
 
-            {/* Quantity Selector */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Quantity
@@ -254,7 +248,6 @@ export function ProductDetailClient({ productId }: { productId: string }) {
               </div>
             </div>
 
-            {/* Action Buttons */}
             <div className="space-y-3 mb-6">
               <button
                 onClick={handleAddToCart}
@@ -283,7 +276,6 @@ export function ProductDetailClient({ productId }: { productId: string }) {
               </button>
             </div>
 
-            {/* Product Details */}
             <div className="border-t border-gray-200 pt-6">
               <h3 className="font-semibold text-gray-900 mb-2">Product Details</h3>
               <ul className="space-y-2 text-sm text-gray-600">
@@ -299,7 +291,6 @@ export function ProductDetailClient({ productId }: { productId: string }) {
           </div>
         </div>
 
-        {/* Reviews Section */}
         <div className="mt-12 border-t border-gray-200 pt-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
             Customer Reviews ({product.reviewCount})

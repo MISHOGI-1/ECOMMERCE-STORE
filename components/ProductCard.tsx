@@ -39,7 +39,6 @@ export function ProductCard({ product }: { product: Product }) {
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     if (product.inventory > 0) {
-      // Get the first available variant for Shopify checkout
       const firstVariant = product.variants?.find(v => v.availableForSale) || product.variants?.[0];
       
       addItem({

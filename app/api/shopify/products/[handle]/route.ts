@@ -6,7 +6,6 @@ export async function GET(
   { params }: { params: { handle: string } }
 ) {
   try {
-    // Check if Shopify is configured
     if (!process.env.SHOPIFY_STORE_DOMAIN || !process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN) {
       return NextResponse.json(
         { error: "Shopify not configured" },
@@ -24,10 +23,6 @@ export async function GET(
     }
 
     const product = transformShopifyProduct(data.product);
-
-    // Get reviews from our database (if you want to keep reviews)
-    // This would require fetching from your Prisma database
-    // For now, we'll return empty reviews array
 
     return NextResponse.json({
       product: {
